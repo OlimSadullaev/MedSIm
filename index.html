@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MedSim – AI Medical Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ══ LOGIN SCREEN ══ -->
+  <div id="screen-login" class="screen active">
+    <div class="login-wrap">
+      <div class="logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/>
+            <path d="M12 8v4l3 3"/>
+            <path d="M8 12h1m6 0h1M12 8v1m0 6v1"/>
+          </svg>
+        </div>
+        <h1>MedSim</h1>
+        <p>AI-powered medical consultation platform</p>
+      </div>
+
+      <div class="card">
+        <h2>Welcome</h2>
+        <p class="sub">Enter your details to begin your medical consultation</p>
+
+        <div id="login-error" class="err hidden"></div>
+
+        <label for="input-name">Your Name</label>
+        <input type="text" id="input-name" placeholder="Dr. Smith" autocomplete="off"/>
+
+        <label for="input-email">Email</label>
+        <input type="email" id="input-email" placeholder="you@university.edu"/>
+
+        <button class="btn" id="btn-start">Start Consultation</button>
+      </div>
+
+      <p class="footer-note">Powered by Grok AI · For educational use only</p>
+    </div>
+  </div>
+
+  <!-- ══ CHAT SCREEN ══ -->
+  <div id="screen-chat" class="screen hidden">
+    <div class="chat-wrap">
+
+      <div class="chat-header">
+        <div class="avatar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/>
+            <path d="M8 12h1m6 0h1M12 8v1m0 6v1"/>
+          </svg>
+        </div>
+        <div class="patient-info">
+          <h3>MedSim AI</h3>
+          <p>Ask any medical question</p>
+          <span class="badge online-dot">● Online</span>
+        </div>
+        <div class="header-right">
+          <div class="msg-count" id="msg-count">0 questions asked</div>
+          <button class="end-btn" id="btn-end">End &amp; Get Summary</button>
+        </div>
+      </div>
+
+      <div class="messages" id="messages">
+        <div class="welcome-card">
+          <div class="welcome-icon">🩺</div>
+          <h3>How can I help you today?</h3>
+          <p>Ask any medical question — symptoms, conditions, medications, treatments, or general health advice.</p>
+          <div class="suggestion-chips">
+            <button class="chip" onclick="fillInput('What are the symptoms of appendicitis?')">Appendicitis symptoms</button>
+            <button class="chip" onclick="fillInput('What causes chest pain?')">Chest pain causes</button>
+            <button class="chip" onclick="fillInput('How is hypertension diagnosed?')">Hypertension diagnosis</button>
+            <button class="chip" onclick="fillInput('What is diabetes type 2?')">Diabetes type 2</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-input-row">
+        <textarea id="chat-input" placeholder="Type your medical question…" rows="1"></textarea>
+        <button class="send-btn" id="btn-send" aria-label="Send">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ SUMMARY SCREEN ══ -->
+  <div id="screen-feedback" class="screen hidden">
+    <div class="feedback-wrap">
+      <div class="card">
+
+        <div class="feedback-header">
+          <div class="summary-icon-wrap">
+            <div class="summary-icon">📋</div>
+          </div>
+          <div class="feedback-title">
+            <h2>Consultation Summary</h2>
+            <p id="feedback-subtitle">–</p>
+          </div>
+        </div>
+
+        <!-- Questions Asked -->
+        <div class="section-label">Questions You Asked</div>
+        <div class="questions-list" id="questions-list"></div>
+
+        <!-- Key Points -->
+        <div class="section-label" style="margin-top:18px">Key Medical Points</div>
+        <div class="keypoints-list" id="keypoints-list"></div>
+
+        <!-- Topics covered -->
+        <div class="topics-wrap" id="topics-wrap"></div>
+
+        <div class="feedback-actions">
+          <button class="btn" id="btn-restart">New Consultation</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
